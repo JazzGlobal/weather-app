@@ -5,13 +5,19 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "start": "npm run css-watch && node app.js",
+    "css-build": "node-sass --omit-source-map-url public/sass/mystyles.scss public/general.css",
+    "css-watch": "npm run css-build --watch"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "ejs": "^2.6.1",
     "express": "^4.16.4",
+    "node-sass": "^4.11.0",
     "request": "^2.88.0"
+  },
+  "devDependencies": {
+    "bulma": "^0.7.4"
   }
 }
