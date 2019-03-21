@@ -1,6 +1,5 @@
 var express = require('express'),
     api = require('./api/api.js'),
-    geolocation = require('geolocation'),
     bodyParser = require('body-parser'),
     app = express();
 
