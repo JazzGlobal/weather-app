@@ -1,3 +1,41 @@
 <% include partials/header %>
 
+<section>
+  <div class="container">
+    <h2 class="is-size-1"><%= weatherData.current.name %></h2>
+    <p class="is-size-2"><%= weatherData.current.main.temp %></p>
+    <p class="is-size-3"><%= weatherData.current.weather[0].main %></p>
+  </div>
+</section>
+
+<% function convertTimeToDate(timestamp){%>
+<% var months_arr = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']; %>
+<% var date = new Date(timestamp*1000); %>
+<% var year = date.getFullYear(); %>
+<% var month = months_arr[date.getMonth()];%>
+<% var day = date.getDate(); %>
+<% var convertedDate = month+'. '+day%>
+<% return convertedDate; }%>
+
+<section>
+  <div class="container">
+    <h2 class="is-size-2">5-Day Forecast</h2>
+    <div class="columns">
+      <% var counter = 0 %>
+      <% for (var i = 0; i < weatherData.forecast.list.length; i++){ %>
+          <% if(i == counter) { %>
+            <% counter += 8; %>
+            <div class="column">
+              <% var data = weatherData.forecast.list[counter-8] %>
+              <%= convertTimeToDate(data.dt)%>
+              <%= data.main.temp%>
+              <%= data.weather[0].main%>
+            </div>
+          <% } %>
+       <% } %>
+    </div>
+  </div>
+
+</section>
+
 <% include partials/footer %>
