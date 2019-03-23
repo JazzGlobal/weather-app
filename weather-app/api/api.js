@@ -4,7 +4,7 @@ var request = require('request'),
 const api =
 {
     getWeatherByLocation(geolocation, callback){
-      var url = `https://api.openweathermap.org/data/2.5/forecast?lat=${geolocation.lat}&lon=${geolocation.lon}&appid=${api_key}`;
+      var url = `https://api.openweathermap.org/data/2.5/forecast?lat=${geolocation.lat}&lon=${geolocation.lon}&units=imperial&appid=${api_key}`;
       console.log('Requesting: ' + url)
       request(url, function(error, response, body){
         if(!error && response.statusCode == 200){
@@ -20,7 +20,7 @@ const api =
     },
 
     getWeatherByZip(zipcode, callback){
-      var url = `https://api.openweathermap.org/data/2.5/weather?zip=${zipcode},us&appid=${api_key}`;
+      var url = `https://api.openweathermap.org/data/2.5/weather?zip=${zipcode},us&units=imperial&appid=${api_key}`;
       console.log('Requesting: ' + url)
       request(url, function(error, response, body){
         if(!error && response.statusCode == 200){
@@ -28,7 +28,23 @@ const api =
           var data = JSON.parse(body);
           callback(data);
         }
-        else{
+        else {
+          console.log(error);
+          console.log('Failed');
+        }
+      });
+    },
+
+    getForecastByZip(zipcode, callback){
+      var url = `http://api.openweathermap.org/data/2.5/forecast?zip=${zipcode}&units=imperial&appid=${api_key}`
+      console.log('Requesting: ' + url);
+      request(url, function(error, response, body){
+        if(!error && response.statusCode == 200){
+          console.log('success');
+          var data = JSON.parse(body);
+          callback(data);
+        }
+        else {
           console.log(error);
           console.log('Failed');
         }
