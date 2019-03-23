@@ -2,6 +2,8 @@
 @import "../../node_modules/bulma/bulma.sass";
 
 // Update Bulma's global variables
-$footer-background-color: $info;
+
+$info: #0f98d8;
+$footer-background-color: #0f98d8;
 
 @import "../../node_modules/bulma/sass/layout/footer.sass";
