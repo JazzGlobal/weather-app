@@ -2,6 +2,11 @@ ul li {
   margin: 10px;
 }
 
+footer {
+margin-top: 2em;
+box-shadow: 0 50vh 0 50vh #0f98d8;
+}
+
 footer a img{
   margin: 10px;
 }
