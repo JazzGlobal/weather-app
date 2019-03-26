@@ -1,10 +1,12 @@
 <% include partials/header %>
 
-<section>
-  <div class="container">
+<section style="margin:2em;">
+  <div class="container has-text-centered">
     <h2 class="is-size-1"><%= weatherData.current.name %></h2>
-    <p class="is-size-2"><%= Math.round(weatherData.current.main.temp) %>&#8457;</p>
-    <p class="is-size-3"><%= weatherData.current.weather[0].main %></p>
+    <p class="is-size-2">
+      <%= Math.round(weatherData.current.main.temp) %>&#8457;
+      <span style="font-weight: bold"><%= weatherData.current.weather[0].main %></span>
+    </p>
   </div>
 </section>
 
@@ -26,9 +28,9 @@
       <% for (var i = 0; i < weatherData.forecast.list.length; i++){ %>
           <% if(i == counter) { %>
             <% counter += 8; %>
-            <div class="column has-text-centered" style="border: 1px black solid; margin: 10px;">
+            <div class="column has-text-centered" style="margin: 10px;">
               <% var data = weatherData.forecast.list[counter-8] %>
-                <h2 class="has-text-centered">
+                <h2 class="has-text-centered is-size-4">
                   <%=convertTimeToDate(data.dt)%>
                 </h2>
                 <p>
