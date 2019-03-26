@@ -3,7 +3,7 @@
 <section>
   <div class="container">
     <h2 class="is-size-1"><%= weatherData.current.name %></h2>
-    <p class="is-size-2"><%= weatherData.current.main.temp %></p>
+    <p class="is-size-2"><%= Math.round(weatherData.current.main.temp) %>&#8457;</p>
     <p class="is-size-3"><%= weatherData.current.weather[0].main %></p>
   </div>
 </section>
@@ -17,25 +17,33 @@
 <% var convertedDate = month+'. '+day%>
 <% return convertedDate; }%>
 
-<section>
+<section style="margin-bottom: 2em;">
   <div class="container">
-    <h2 class="is-size-2">5-Day Forecast</h2>
+    <h2 class="is-size-2 has-text-centered">5-Day Forecast</h2>
+    <hr>
     <div class="columns">
       <% var counter = 0 %>
       <% for (var i = 0; i < weatherData.forecast.list.length; i++){ %>
           <% if(i == counter) { %>
             <% counter += 8; %>
-            <div class="column">
+            <div class="column has-text-centered" style="border: 1px black solid; margin: 10px;">
               <% var data = weatherData.forecast.list[counter-8] %>
-              <%= convertTimeToDate(data.dt)%>
-              <%= data.main.temp%>
-              <%= data.weather[0].main%>
-            </div>
+                <h2 class="has-text-centered">
+                  <%=convertTimeToDate(data.dt)%>
+                </h2>
+                <p>
+                  <span style="font-size: 1.5em;"><%= Math.round(data.main.temp) %>&#8457;</span>
+                </p>
+                <p>
+                  <span style="font-weight: bold;"><%= data.weather[0].main %></span>
+                </p>
+                <% var iconString = data.weather[0].icon %>
+                <img src="https://www.openweathermap.org/img/w/<%=iconString%>.png" width=100 height=100 alt="">
+              </div>
           <% } %>
        <% } %>
     </div>
   </div>
-
 </section>
 
 <% include partials/footer %>
