@@ -12,12 +12,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bulma": "^0.7.4",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
     "node-sass": "^4.11.0",
     "request": "^2.88.0"
-  },
-  "devDependencies": {
-    "bulma": "^0.7.4"
   }
 }
